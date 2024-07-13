@@ -29,16 +29,6 @@ void online_judge()
 // Write solution here
 void solve()
 {
-    map<int, bool> mp;
-    ll n;
-    cin >> n;
-    for (int i = 0; i < n; i++)
-    {
-        int x;
-        cin >> x;
-        mp[x] = true;
-    }
-    cout << mp.size() << endl;
 }
 
 //_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
@@ -47,7 +37,7 @@ int main()
     fastio;
     // online_judge();
     ll _ = 1;
-    // cin >> _;
+    cin >> _;
     while (_-- > 0)
         solve();
     return 0;

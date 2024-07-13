@@ -29,16 +29,17 @@ void online_judge()
 // Write solution here
 void solve()
 {
-    map<int, bool> mp;
     ll n;
     cin >> n;
-    for (int i = 0; i < n; i++)
-    {
-        int x;
-        cin >> x;
-        mp[x] = true;
-    }
-    cout << mp.size() << endl;
+    vll a(n);
+    for (ll i = 0; i < n; i++)
+        cin >> a[i];
+    sort(all(a));
+    ll ans = 0;
+    for (ll i = 0; i < n; i++)
+        ans += abs(a[n / 2] - a[i]);
+
+    cout << ans;
 }
 
 //_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-

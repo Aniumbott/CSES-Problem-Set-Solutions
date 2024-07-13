@@ -29,16 +29,40 @@ void online_judge()
 // Write solution here
 void solve()
 {
-    map<int, bool> mp;
-    ll n;
+    int n, sum = 0;
     cin >> n;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> st;
+    int room = 0;
+    vector<int> v(n);
+    vector<vector<int>> arr(n, vector<int>(3));
     for (int i = 0; i < n; i++)
     {
-        int x;
-        cin >> x;
-        mp[x] = true;
+        cin >> arr[i][0];
+        cin >> arr[i][1];
+        arr[i][2] = i;
     }
-    cout << mp.size() << endl;
+    sort(arr.begin(), arr.end());
+    for (int i = 0; i < n; i++)
+    {
+        int x, y;
+        x = arr[i][0], y = arr[i][1];
+        if (st.empty() or st.top().first >= x)
+        {
+            room++;
+            v[arr[i][2]] = room;
+            st.push({y, room});
+        }
+        else
+        {
+            auto it = st.top();
+            v[arr[i][2]] = (it.second);
+            st.push({y, it.second});
+            st.pop();
+        }
+    }
+    cout << room << endl;
+    for (int i = 0; i < v.size(); i++)
+        cout << v[i] << " ";
 }
 
 //_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-

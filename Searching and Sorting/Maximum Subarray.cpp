@@ -29,16 +29,18 @@ void online_judge()
 // Write solution here
 void solve()
 {
-    map<int, bool> mp;
     ll n;
     cin >> n;
+    vll a(n);
+    for (ll i = 0; i < n; i++)
+        cin >> a[i];
+    ll ans = INT_MIN, sum = 0;
     for (int i = 0; i < n; i++)
     {
-        int x;
-        cin >> x;
-        mp[x] = true;
+        sum = max(sum + a[i], a[i]);
+        ans = max(sum, ans);
     }
-    cout << mp.size() << endl;
+    cout << ans << endl;
 }
 
 //_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-

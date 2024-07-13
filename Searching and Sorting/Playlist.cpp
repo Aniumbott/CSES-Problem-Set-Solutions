@@ -5,11 +5,11 @@
 #define vi vector<int>
 #define vll vector<ll>
 #define vip vector<pair<int, int>>
-#define all(x) (x).begin(), (x).end()
+#define all(x) (x).begin(), (x).r()
 #define PI 3.1415926535897932384626433832
 #define um unordered_map
-#define dbg(x) cout << #x << " = " << x << endl
-#define endl "\n"
+#define dbg(x) cout << #x << " = " << x << rl
+#define rl "\n"
 // Fast I/O
 #define fastio   \
     cin.tie(0);  \
@@ -29,16 +29,28 @@ void online_judge()
 // Write solution here
 void solve()
 {
-    map<int, bool> mp;
     ll n;
     cin >> n;
-    for (int i = 0; i < n; i++)
+    vll a(n);
+    for (ll i = 0; i < n; i++)
     {
-        int x;
-        cin >> x;
-        mp[x] = true;
+        cin >> a[i];
     }
-    cout << mp.size() << endl;
+    ll l = 0, ans = 0;
+    map<ll, ll> mp;
+    for (ll r = 0; r < n; r++)
+    {
+        if (mp.find(a[r]) == mp.end())
+            mp.insert({a[r], r});
+        else
+        {
+            if (mp[a[r]] >= l)
+                l = mp[a[r]] + 1;
+            mp[a[r]] = r;
+        }
+        ans = max(ans, r - l + 1);
+    }
+    cout << ans << rl;
 }
 
 //_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-

@@ -29,16 +29,33 @@ void online_judge()
 // Write solution here
 void solve()
 {
-    map<int, bool> mp;
-    ll n;
-    cin >> n;
-    for (int i = 0; i < n; i++)
+    ll n, p;
+    cin >> n >> p;
+
+    set<pair<int, int>> ranges;
+    ranges.insert({0, n});
+    multiset<ll> range_lengths;
+    range_lengths.insert(n);
+
+    for (int i = 0; i < p; i++)
     {
-        int x;
-        cin >> x;
-        mp[x] = true;
+        ll pos;
+        cin >> pos;
+        auto it = ranges.upper_bound({pos, 0});
+        it--;
+
+        ll start = it->first;
+        ll end = it->second;
+
+        ranges.erase(it);
+        range_lengths.erase(range_lengths.find(end - start));
+        ranges.insert({start, pos});
+        ranges.insert({pos, end});
+        range_lengths.insert(pos - start);
+        range_lengths.insert(end - pos);
+
+        cout << *range_lengths.rbegin() << " ";
     }
-    cout << mp.size() << endl;
 }
 
 //_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-

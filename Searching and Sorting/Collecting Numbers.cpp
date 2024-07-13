@@ -29,16 +29,23 @@ void online_judge()
 // Write solution here
 void solve()
 {
-    map<int, bool> mp;
     ll n;
     cin >> n;
-    for (int i = 0; i < n; i++)
+    vector<pair<ll, ll>> a(n), b;
+    for (ll i = 0; i < n; i++)
     {
-        int x;
-        cin >> x;
-        mp[x] = true;
+        cin >> a[i].first;
+        a[i].second = i;
     }
-    cout << mp.size() << endl;
+    ll i = 1, round = 1;
+    sort(all(a));
+    while (i < n)
+    {
+        if (a[i].second < a[i - 1].second)
+            round++;
+        i++;
+    }
+    cout << round << endl;
 }
 
 //_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-

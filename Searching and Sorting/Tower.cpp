@@ -29,14 +29,26 @@ void online_judge()
 // Write solution here
 void solve()
 {
-    map<int, bool> mp;
     ll n;
     cin >> n;
-    for (int i = 0; i < n; i++)
+    multimap<ll, ll> mp;
+    vll a(n);
+    for (ll i = 0; i < n; i++)
     {
-        int x;
-        cin >> x;
-        mp[x] = true;
+        cin >> a[i];
+    }
+    for (ll i = 0; i < n; i++)
+    {
+        auto it = mp.upper_bound(a[i]);
+        if (it == mp.end())
+        {
+            mp.insert({a[i], i});
+        }
+        else
+        {
+            mp.erase(it);
+            mp.insert({a[i], i});
+        }
     }
     cout << mp.size() << endl;
 }

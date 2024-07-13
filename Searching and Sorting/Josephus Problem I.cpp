@@ -26,19 +26,36 @@ void online_judge()
 }
 //_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 
+struct ListNode
+{
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
+
 // Write solution here
 void solve()
 {
-    map<int, bool> mp;
     ll n;
     cin >> n;
-    for (int i = 0; i < n; i++)
+    ListNode *head = new ListNode(1);
+    ListNode *curr = head;
+    for (int i = 2; i <= n; i++)
     {
-        int x;
-        cin >> x;
-        mp[x] = true;
+        curr->next = new ListNode(i);
+        curr = curr->next;
     }
-    cout << mp.size() << endl;
+    curr->next = head;
+    curr = head;
+    while (curr->next != curr)
+    {
+        cout << curr->next->val << " ";
+        curr->next = curr->next->next;
+        curr = curr->next;
+    }
+    cout << curr->val << endl;
 }
 
 //_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
